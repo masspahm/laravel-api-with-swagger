@@ -4,6 +4,8 @@
 - git clone https://github.com/masspahm/laravel-api-with-swagger.git
 - cd laravel-api-with-swagger
 - composer install
+- cp .env.example .env
+- (adjust the configuration according to your postgresql server)
 - php artisan key:generate
 - php artisan db:seed
 - php artisan serve
