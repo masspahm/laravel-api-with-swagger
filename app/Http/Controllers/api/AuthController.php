@@ -29,15 +29,14 @@ class AuthController extends ResponseController
      *    response=200,
      *    description="Login success",
      *    @OA\JsonContent(
-     *       @OA\Property(property="success", type="boolean", example="false"),
+     *       @OA\Property(property="success", type="boolean", example="true"),
      *       @OA\Property(property="message", type="string", example="User login successfully."),
      *       @OA\Property(property="payload", type="object",      
      *              @OA\Property(property="token", type="string", example="Sanctum token"),
      *              @OA\Property(property="name", type="string", example="User Name"),
      *       ),
      *       )
-     *     )
-     * )
+     *     ),
      * @OA\Response(
      *    response=401,
      *    description="Wrong credentials response",
@@ -46,10 +45,11 @@ class AuthController extends ResponseController
      *       @OA\Property(property="message", type="string", example="Login failed"),
      *       @OA\Property(property="payload", type="object",      
      *              @OA\Property(property="error", type="string", example="Invalid credentials")
-     *       ),
+     *          ),
      *       )
      *     )
-     * )
+     *      )
+     * ),
      */
 
     public function login(LoginRequest $request)
@@ -61,7 +61,7 @@ class AuthController extends ResponseController
 
             return $this->responseSuccess($success, 'User login successfully.');
         } else {
-            return $this->responseError('Login failed', ['error' => 'Invalid credentials'],401);
+            return $this->responseError('Login failed', ['error' => 'Invalid credentials'], 401);
         }
     }
 

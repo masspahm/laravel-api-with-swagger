@@ -43,7 +43,27 @@ class EventController extends ResponseController
      *      @OA\Response(
      *          response=200,
      *          description="Request success",
-     *          @OA\JsonContent(ref="#/components/schemas/EventResource"),
+     *          @OA\JsonContent(
+     *              @OA\Property(property="success", type="boolean", example="true"),
+     *              @OA\Property(property="message", type="string", example="request success"),
+     *              @OA\Property(property="payload", type="object",      
+     *                  @OA\Property(property="current_page", type="integer", example="1"),
+     *                  @OA\Property(property="data",type="array",
+     *                    @OA\Items(ref="#/components/schemas/Event"),
+     *                  ),
+     *                  @OA\Property(property="first_page_url", type="string", example="http://localhost:8000/api/v1/event?page=1"),
+     *                  @OA\Property(property="from", type="integer", example="1"),
+     *                  @OA\Property(property="last_page", type="integer", example="1"),
+     *                  @OA\Property(property="last_page_url", type="integer", example="http://localhost:8000/api/v1/event?page=1"),
+     *                  @OA\Property(property="links", type="string", example="Invalid credentials"),
+     *                  @OA\Property(property="next_page_url", type="string", example="null"),
+     *                  @OA\Property(property="path", type="string", example="http://localhost:8000/api/v1/event"),
+     *                  @OA\Property(property="per_page", type="integer", example="10"),
+     *                  @OA\Property(property="prev_page_url", type="string", example="null"),
+     *                  @OA\Property(property="to", type="integer", example="10"),
+     *                  @OA\Property(property="total", type="integer", example="1-"),
+     *             ),
+     *          ),     
      *      )
      * ),
      */
@@ -72,13 +92,30 @@ class EventController extends ResponseController
      *          @OA\JsonContent(ref="#/components/schemas/StoreEventRequest")
      *      ),
      *      @OA\Response(
-     *          response=201,
-     *          description="Successful operation",
-     *          @OA\JsonContent(ref="#/components/schemas/Event")
+     *          response=200,
+     *          description="Successful operation",     
+     *          @OA\JsonContent(
+     *              @OA\Property(property="success", type="boolean", example="true"),
+     *              @OA\Property(property="message", type="string", example="request success"),
+     *              @OA\Property(property="payload", type="object",      
+     *                    ref="#/components/schemas/Event"
+     *              )
+     *          ),
      *       ),
      *      @OA\Response(
-     *          response=400,
-     *          description="Bad Request"
+     *          response=422,
+     *          description="Validation Errors",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="success", type="boolean", example="false"),
+     *              @OA\Property(property="message", type="string", example="Validation errors"),
+     *              @OA\Property(property="payload", type="object",      
+     *                  @OA\Property(property="name", type="array",
+     *                      @OA\Items(
+     *                          example="The name field is required."
+     *                      )
+     *                  ),
+     *              )
+     *          ),
      *      ),
      *      @OA\Response(
      *          response=401,
@@ -88,11 +125,6 @@ class EventController extends ResponseController
      *          response=403,
      *          description="Forbidden"
      *      )
-     * ),
-     * @OA\Security(        
-     *      type="Bearer",
-     *      in="header",
-     *      name="Authorization" 
      * ),
      */
     public function store(StoreEventRequest $request)
@@ -128,7 +160,13 @@ class EventController extends ResponseController
      *      @OA\Response(
      *          response=200,
      *          description="Successful operation",
-     *          @OA\JsonContent(ref="#/components/schemas/Event")
+     *          @OA\JsonContent(
+     *              @OA\Property(property="success", type="boolean", example="true"),
+     *              @OA\Property(property="message", type="string", example="request success"),
+     *              @OA\Property(property="payload", type="object",      
+     *                    ref="#/components/schemas/Event"
+     *              )
+     *          ),
      *       ),     
      *      @OA\Response(
      *          response=401,
@@ -170,11 +208,28 @@ class EventController extends ResponseController
      *      @OA\Response(
      *          response=200,
      *          description="Successful operation",
-     *          @OA\JsonContent(ref="#/components/schemas/Event")
+     *          @OA\JsonContent(
+     *              @OA\Property(property="success", type="boolean", example="true"),
+     *              @OA\Property(property="message", type="string", example="request success"),
+     *              @OA\Property(property="payload", type="object",      
+     *                    ref="#/components/schemas/Event"
+     *              )
+     *          ),
      *       ),
      *      @OA\Response(
      *          response=422,
-     *          description="Validation Errors"
+     *          description="Validation Errors",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="success", type="boolean", example="false"),
+     *              @OA\Property(property="message", type="string", example="Validation errors"),
+     *              @OA\Property(property="payload", type="object",      
+     *                  @OA\Property(property="name", type="array",
+     *                      @OA\Items(
+     *                          example="The name field is required."
+     *                      )
+     *                  ),
+     *              )
+     *          ),
      *      ),
      *      @OA\Response(
      *          response=401,
@@ -216,7 +271,13 @@ class EventController extends ResponseController
      *      @OA\Response(
      *          response=200,
      *          description="Successful operation",
-     *          @OA\JsonContent(ref="#/components/schemas/Event")
+     *          @OA\JsonContent(
+     *              @OA\Property(property="success", type="boolean", example="true"),
+     *              @OA\Property(property="message", type="string", example="request success"),
+     *              @OA\Property(property="payload", type="object",      
+     *                    ref="#/components/schemas/Event"
+     *              )
+     *          ),
      *       ),
      *      @OA\Response(
      *          response=401,
