@@ -1,7 +1,4 @@
 <?php
-
-use Hamcrest\Type\IsNumeric;
-
 $data = ["11","12","cii","001","2","1998","7","89","iia","fii"];
 $str = array_filter($data,function($v){
     if (is_numeric($v)) {
